@@ -1,7 +1,14 @@
+import 'babel-polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import routes from './routes';
+import { Provider } from 'react-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-// main app
-import App from '../containers/App';
-
-ReactDOM.render(<App />, document.getElementById('app'))
+render(
+  <Provider store={{subscribe: function(){}, dispatch: function(){}, getState: function(){}}}>
+    {routes}
+  </Provider>,
+  document.getElementById('root')
+);

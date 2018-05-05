@@ -4,6 +4,7 @@ var express = require('express')
 var db = require('./db/db.js');
 var app = express()
 
+app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
