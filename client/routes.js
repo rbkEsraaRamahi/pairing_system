@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import App from '../containers/App';
+import App from './src/index';
 
 const routes = (
   <Router history={browserHistory}>
