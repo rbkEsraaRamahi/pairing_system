@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
 import Student from './components/addStudent.jsx';
 import Pairing from './components/pairingList.jsx';
 
