@@ -48,7 +48,10 @@ module.exports = function(env) {
     }),
 
     new ExtractTextPlugin('style-[contenthash:8].css'),
-
+     new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
     new HtmlWebpackPlugin({
       template: './index.ejs',
       inject: true,
@@ -224,6 +227,7 @@ module.exports = function(env) {
       extensions: ['.webpack-loader.js', '.web-loader.js', '.loader.js', '.js', '.jsx'],
       modules: [path.resolve(__dirname, 'node_modules'), sourcePath],
     },
+
 
     plugins,
 
