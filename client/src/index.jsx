@@ -13,7 +13,6 @@ class App extends React.Component {
   }
 
   add (term) {
-  
     $.ajax({
       type: "POST",
       url: "/",
@@ -32,5 +31,6 @@ class App extends React.Component {
     </div>)
   }
 }
+export default App
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// ReactDOM.render(<App />, document.getElementById('app'));
