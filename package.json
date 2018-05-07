@@ -8,7 +8,7 @@
     "devbuild": "rimraf build && cross-env NODE_ENV=production webpack --env.sw=true",
     "dev": "webpack-dev-server",
     "lint": "eslint ./",
-    "test": "./node_modules/karma/bin/karma start --auto-watch --no-single-run karma.confg.js"
+     "test": "./node_modules/.bin/mocha ./client/src/components/test.spec.js"
   },
   "author": "",
   "license": "ISC",
@@ -52,7 +52,6 @@
     "sw-precache-webpack-plugin": "^0.9.1",
     "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
     "uglifyjs-webpack-plugin": "0.4.3",
-    "webpack": "^2.4.1",
     "webpack-dev-server": "2.4.4"
   },
   "dependencies": {
@@ -91,9 +90,10 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^2.5.4",
-    "sinon": "^5.0.5",
+    "sinon": "^5.0.6",
     "sinon-chai": "^3.0.0",
     "uglify-es": "git://github.com/mishoo/UglifyJS2.git#harmony",
-    "uglify-js": "^2.8.0"
+    "uglify-js": "^2.8.0",
+    "webpack": "^4.8.0"
   }
 }
