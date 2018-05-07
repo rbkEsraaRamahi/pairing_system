@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { 
-      students: []
+      students: ["Esraa", "Hanan", "Sahar", "Mohannad", "Mai", "Heba"]
     }
 
   }
@@ -23,14 +23,21 @@ class App extends React.Component {
       }
     });
   }
+  pairingList(data){
+    console.log('sucesss');
+
+  }
 
   render () {
     return (<div>
       <h1>Pairing System</h1>
-      <Student onAdd={this.add.bind(this)}/>
+      
       <Pairing students={this.state.students}/>
+     <button onClick={this.pairingList}> create </button>
+
+      
     </div>)
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;
