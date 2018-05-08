@@ -10,7 +10,6 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -48,15 +47,30 @@ class App extends React.Component {
       pairing: this.state.pairing
     })
     console.log(this.state.pairing);
-  }
+    var pairs = [];
+    arr=this.state.pairing;
+    for (var i=0 ; i<arr.length ; i+=2) {
+        if (arr[i+1] !== undefined) {
+            pairs.push ([arr[i], arr[i+1]]);
+        } else {
+            pairs.push ([arr[i]]);
+        }
+    }
+    //this.state.pairing=pairs;
+   this.setState({
+      pairing: pairs
+    })
 
+   console.log(this.state.pairing)
+
+  }
+  
   render () {
     return (<div>
       <h1>Pairing System</h1>
       <Student/>
       <h4> Pairing List </h4>
       <button onClick={this.pairingList}> create </button>
-
       <Table>
       <TableHeader>
       <TableRow>
@@ -64,11 +78,11 @@ class App extends React.Component {
       <TableHeaderColumn>Student2</TableHeaderColumn>
       </TableRow>
       </TableHeader>
-      <TableBody style={{width: 100%}}>
-      {this.state.pairing.map(student =>
+      <TableBody>
+      {this.state.pairing.map((student,index) =>
         <TableRow>
-        <TableRowColumn>{student}</TableRowColumn>
-        <TableRowColumn>{student}</TableRowColumn>
+        <TableRowColumn>{student[0]}</TableRowColumn>
+        <TableRowColumn>{student[1]}</TableRowColumn>
         </TableRow>
         )}
       </TableBody>
