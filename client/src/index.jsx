@@ -53,23 +53,23 @@ class App extends React.Component {
     var pairs = [];
     arr=this.state.pairing;
     for (var i=0 ; i<arr.length ; i+=2) {
-        if (arr[i+1] !== undefined) {
-            pairs.push ([arr[i], arr[i+1]]);
-        } else {
-            pairs.push ([arr[i]]);
-        }
+      if (arr[i+1] !== undefined) {
+        pairs.push ([arr[i], arr[i+1]]);
+      } else {
+        pairs.push ([arr[i]]);
+      }
     }
     //this.state.pairing=pairs;
-   this.setState({
+    this.setState({
       pairing: pairs
     })
 
-   console.log(this.state.pairing)
+    console.log(this.state.pairing)
 
   }
   
   render () {
-    return (<div>
+    return (<div >
       <AppBar
       title="Pairing System"
       titleStyle={{fontWeight:"bold"}}
