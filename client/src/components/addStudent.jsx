@@ -30,7 +30,6 @@ class Student extends React.Component {
   		floatingLabelText="Enter a student name:"
   		floatingLabelFixed={true}
   		floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold",color:"black" }}
-  		value={this.state.term} 
   		onChange={this.onChange}
   		/><br />
 
@@ -39,7 +38,6 @@ class Student extends React.Component {
   		floatingLabelText=" Enter a student Level:"
   		floatingLabelFixed={true}
   		floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold" , color:"black" }}
-  		value={this.state.term} 
   		onChange={this.onChange}
   		/><br />
 
@@ -48,7 +46,6 @@ class Student extends React.Component {
   		floatingLabelText=" Enter a student cohort:"
   		floatingLabelFixed={true}
   		floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold",color:"black" }}
-  		value={this.state.term} 
   		onChange={this.onChange}
   		/><br />
   		<br />
