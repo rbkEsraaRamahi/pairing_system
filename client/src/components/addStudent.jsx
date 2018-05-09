@@ -1,4 +1,6 @@
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 class Student extends React.Component {
   constructor(props) {
@@ -21,10 +23,37 @@ class Student extends React.Component {
   }
 
   render() {
-    return (<div>
-      Enter a student name: <input value={this.state.term} onChange={this.onChange}/>       
-      <button onClick={this.add}> Add Student </button>
-    </div>) 
+  	return (<div>	
+
+  		<TextField
+  		style={{fontSize: '20px'}}
+  		floatingLabelText="Enter a student name:"
+  		floatingLabelFixed={true}
+  		floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold",color:"black" }}
+  		value={this.state.term} 
+  		onChange={this.onChange}
+  		/><br />
+
+  		<TextField
+  		style={{fontSize: '20px'}}
+  		floatingLabelText=" Enter a student Level:"
+  		floatingLabelFixed={true}
+  		floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold" , color:"black" }}
+  		value={this.state.term} 
+  		onChange={this.onChange}
+  		/><br />
+
+  		<TextField
+  		style={{fontSize: '20px'}}
+  		floatingLabelText=" Enter a student cohort:"
+  		floatingLabelFixed={true}
+  		floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold",color:"black" }}
+  		value={this.state.term} 
+  		onChange={this.onChange}
+  		/><br />
+  		<br />
+  		<RaisedButton label="Add Student" buttonStyle={{ background:"#FF1493"}}  onClick={this.add} />
+  		</div>)  
   }
 }
 

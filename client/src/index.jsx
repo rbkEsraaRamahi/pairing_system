@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Student from './components/addStudent.jsx';
 import Pairing from './components/pairingList.jsx';
+import RaisedButton from 'material-ui/RaisedButton';
+import Badge from 'material-ui/Badge';
 import {
   Table,
   TableBody,
@@ -10,6 +12,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import AppBar from 'material-ui/AppBar';
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -67,10 +70,17 @@ class App extends React.Component {
   
   render () {
     return (<div>
-      <h1>Pairing System</h1>
+      <AppBar
+      title="Pairing System"
+      titleStyle={{fontWeight:"bold"}}
+      style={{ background:"#FF1493"}}
+      iconClassNameRight="muidocs-icon-navigation-expand-more"
+      />
       <Student/>
+      <br />
+      <br />
       <h4> Pairing List </h4>
-      <button onClick={this.pairingList}> create </button>
+      <RaisedButton label="Create"  buttonStyle={{ background:"#FF1493"}}  onClick={this.pairingList}  onClick={this.pairingList} />
       <Table>
       <TableHeader>
       <TableRow>
