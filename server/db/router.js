@@ -2,9 +2,11 @@ var studentRouter = require('express').Router();
 var studentController = require('./controller.js');
 
 
-studentRouter.route('/')
+studentRouter.route('/').post(studentController.createOne)
+studentRouter.route('/').get(studentController.retrieve)
+studentRouter.route('/update').put(studentController.updateOne)
 
-  .post(studentController.createOne)
+
 
 
 module.exports = studentRouter;
