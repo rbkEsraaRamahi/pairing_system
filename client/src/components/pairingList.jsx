@@ -1,12 +1,12 @@
 import React from 'react';
 import App from '../index';
 const Pairing = (props) => (
-  <div>
+	<div>
 
-    <h4> Pairing List </h4>
-    
-  </div>
-)
+	<h4> Pairing List </h4>
+	
+	</div>
+	)
 
 
 export default Pairing;

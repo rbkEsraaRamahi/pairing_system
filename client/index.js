@@ -4,11 +4,12 @@ import { render } from 'react-dom';
 import routes from './routes';
 import { Provider } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 injectTapEventPlugin();
 
 render(
-  <Provider store={{subscribe: function(){}, dispatch: function(){}, getState: function(){}}}>
+   <MuiThemeProvider>
     {routes}
-  </Provider>,
+  </MuiThemeProvider>,
   document.getElementById('root')
 );
