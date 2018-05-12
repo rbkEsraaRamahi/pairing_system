@@ -37,7 +37,15 @@ class App extends React.Component {
     });
   }
   pairingList(){
-    var arr = this.state.students;
+  var that=this
+  $.ajax({
+    type: 'GET',
+    url: ' http://localhost:3000/api/student/',
+    data: {},
+    success: function (data) {
+
+      console.log(data)
+      var arr = data;
     var length = arr.length;
     for (var i =0; i < arr.length; i++) {
       var rand = Math.floor(Math.random()*(length-i)+i);
@@ -45,26 +53,33 @@ class App extends React.Component {
       arr[i] = arr[rand];
       arr[rand] = previos; 
     }
-    this.state.pairing=arr;
-    this.setState({
-      pairing: this.state.pairing
+    that.state.pairing=arr;
+    that.setState({
+      pairing: that.state.pairing
     })
-    console.log(this.state.pairing);
+    console.log(that.state.pairing);
     var pairs = [];
-    arr=this.state.pairing;
+    arr=that.state.pairing;
     for (var i=0 ; i<arr.length ; i+=2) {
       if (arr[i+1] !== undefined) {
-        pairs.push ([arr[i], arr[i+1]]);
+        pairs.push ([arr[i].StudentName, arr[i+1].StudentName]);
       } else {
-        pairs.push ([arr[i]]);
+        pairs.push ([arr[i].StudentName]);
       }
     }
+    console.log(pairs)
     //this.state.pairing=pairs;
-    this.setState({
+    that.setState({
       pairing: pairs
     })
 
-    console.log(this.state.pairing)
+    console.log(that.state.pairing)
+    },
+    error: function (request, status, error) {
+      console.log(error);
+    }
+  });
+    
 
   }
   
