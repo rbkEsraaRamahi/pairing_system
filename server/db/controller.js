@@ -2,7 +2,7 @@ var Student = require('./Student');
 
 
 exports.createOne = function (req, res) {
-
+req.body.StudentName = req.body.StudentName.toLowerCase()
   var student = req.body;
   Student.create(student, function (err, response) {
     if (err) {
@@ -44,10 +44,9 @@ exports.updateOne = function(req,res){
 							// res.status(500).json(err.message);
 						}else{
 							res.end(JSON.stringify(data))
-					}
+						}	
 					})
-				}
-					
+				}	
 			}
 		}
 	})
