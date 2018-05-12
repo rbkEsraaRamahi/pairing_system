@@ -16,8 +16,7 @@ import AppBar from 'material-ui/AppBar';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      students: ["Esraa", "Hanan", "Sahar", "Mohannad", "Mai", "Heba"],
+    this.state = {  
       pairing:[]
     }
     this.pairingList = this.pairingList.bind(this);
@@ -25,12 +24,13 @@ class App extends React.Component {
 
   }
 
-  add (term) {
-
+  add () {
+  var that=this
+  console.log(this.state.pairing)
     $.ajax({
-      type: "POST",
-      url: "/",
-      data: {},
+      type: "PUT",
+      url: "http://localhost:3000/api/student/update",
+      data:{"student":that.state.pairing}
       success: function(res){
         console.log('sucesss');
       }
@@ -95,7 +95,7 @@ class App extends React.Component {
       <br />
       <br />
       <h4> Pairing List </h4>
-      <RaisedButton label="Create"  buttonStyle={{ background:"#FF1493"}}  onClick={this.pairingList}  onClick={this.pairingList} />
+      <RaisedButton label="Create"  buttonStyle={{ background:"#FF1493"}}  onClick={this.pairingList}  />
       <Table>
       <TableHeader>
       <TableRow>
@@ -112,6 +112,8 @@ class App extends React.Component {
         )}
       </TableBody>
       </Table>
+    <RaisedButton label="Submit"  buttonStyle={{ background:"#FF1493"}}  onClick={this.add} />
+
       </div>)
   }
 }
