@@ -30,7 +30,7 @@ class App extends React.Component {
     $.ajax({
       type: "PUT",
       url: "http://localhost:3000/api/student/update",
-      data:{"student":that.state.pairing}
+      data:{"student":that.state.pairing},
       success: function(res){
         console.log('sucesss');
       }
