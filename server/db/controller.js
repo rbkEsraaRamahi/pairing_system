@@ -29,7 +29,7 @@ exports.updateOne = function(req,res){
     var students = JSON.parse(stringdd)
 
 	//var students = JSON.parse((req.body.student));
-	console.log(students)
+	//console.log(students)
 	Student.find().find(function(err,data){
 		for (var i = 0; i < data.length; i++) {
 			for (var j = 0; j < students.length; j++) {
