@@ -20,6 +20,7 @@ class App extends React.Component {
       pairing:[]
     }
     this.pairingList = this.pairingList.bind(this);
+     this.add = this.add.bind(this);
 
 
   }
@@ -30,7 +31,7 @@ class App extends React.Component {
     $.ajax({
       type: "PUT",
       url: "http://localhost:3000/api/student/update",
-      data:{"student":that.state.pairing}
+      data:{"student":that.state.pairing},
       success: function(res){
         console.log('sucesss');
       }
@@ -57,7 +58,7 @@ class App extends React.Component {
     that.setState({
       pairing: that.state.pairing
     })
-    console.log(that.state.pairing);
+    //console.log(that.state.pairing);
     var pairs = [];
     arr=that.state.pairing;
     for (var i=0 ; i<arr.length ; i+=2) {
@@ -67,18 +68,18 @@ class App extends React.Component {
         pairs.push ([arr[i].StudentName]);
       }
     }
-    console.log(pairs)
+    //console.log(pairs)
     //this.state.pairing=pairs;
     that.setState({
       pairing: pairs
     })
-
-    console.log(that.state.pairing)
+    
     },
     error: function (request, status, error) {
       console.log(error);
     }
   });
+  //console.log(this.state.pairing)
     
 
   }
