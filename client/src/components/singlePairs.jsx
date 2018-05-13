@@ -23,8 +23,8 @@ export default class Pairs extends React.Component {
                       Image Avatar Chip
                     </Chip>
                   </Col>
-                   <Col lg={3}>
-                   </Col>
+                  <Col lg={3}>
+                  </Col>
                   <Col style={{margin: '1em'}}>
                     <Chip
                     >

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import SinglePreviouseGroups from './SinglePreviouseGroups';
-
+import methods from './methods';
 
 class previousGroups extends React.Component {
   constructor() {
@@ -1259,10 +1259,22 @@ class previousGroups extends React.Component {
     }
   }
 
+  componentWillMount() {
+    this.setState({newNames: this.state.names})
+  }
+
+  handleGroupSearch = (query) => {
+    this.setState({newNames: methods.groupSearch(this.state.names, query)});
+  }
+
   render() {
     return (
         <Grid fluid>
-          <SinglePreviouseGroups names={this.state.names}/>
+          <SinglePreviouseGroups handleGroupSearch={(value) => {
+            this.handleGroupSearch(value)
+          }} handleNameSearch={(value) => {
+            this.handleNameSearch(value)
+          }} names={this.state.newNames}/>
         </Grid>
     )
   }
