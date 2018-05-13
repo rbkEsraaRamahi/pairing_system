@@ -12,6 +12,17 @@ export default class SinglePreviouseGroups extends React.Component {
     super(props)
   }
 
+  handleGroupSearch = (evt, value) => {
+    this.setState({groupName: value})
+    this.props.handleGroupSearch(value)
+
+  }
+
+  handleNameSearch = (evt, value) => {
+    this.setState({name: value})
+    this.props.handleNameSearch(value)
+  }
+
   render() {
     const style = {
       height: 1200,
@@ -28,6 +39,7 @@ export default class SinglePreviouseGroups extends React.Component {
               <TextField
                   hintText='Full width'
                   fullWidth
+                  onChange={this.handleNameSearch}
               />
             </Col>
             <Col lg={4}/>
@@ -35,8 +47,9 @@ export default class SinglePreviouseGroups extends React.Component {
 
             <Col lg={1}>
               <TextField
-                  hintText='Full width'
+                  hintText='Search By Group '
                   fullWidth
+                  onChange={this.handleGroupSearch}
               />
             </Col>
           </Row>
