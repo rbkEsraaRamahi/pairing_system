@@ -8,7 +8,7 @@ class previousGroups extends React.Component {
     super()
     this.state = {
       names: [{
-        "generationData": {
+        "groupData": {
           "id": 107,
           "title": "angular",
           "group_id": 34,
@@ -1265,6 +1265,10 @@ class previousGroups extends React.Component {
 
   handleGroupSearch = (query) => {
     this.setState({newNames: methods.groupSearch(this.state.names, query)});
+  }
+
+  handleNameSearch = (query) => {
+    this.setState({newNames: methods.nameSearch(this.state.names, query)});
   }
 
   render() {
