@@ -26,6 +26,5 @@ exports.nameSearch = function (groups, query) {
           newArray = [];
         }
       }
-      console.log(groups)
   }
 };
