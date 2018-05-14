@@ -1267,6 +1267,11 @@ class previousGroups extends React.Component {
     this.setState({newNames: methods.groupSearch(this.state.names, query)});
   }
 
+  handleNameSearch = (query) => {
+    console.log(methods.nameSearch(this.state.names, query), 'this after ')
+    this.setState({newNames: methods.nameSearch(this.state.names, query)});
+  }
+
   render() {
     return (
         <Grid fluid>
