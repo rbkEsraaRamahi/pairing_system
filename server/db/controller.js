@@ -29,29 +29,42 @@ exports.updateOne = function(req,res){
     var students = JSON.parse(stringdd)
 
 	//var students = JSON.parse((req.body.student));
-	//console.log(students)
+	console.log(students)
 	Student.find().find(function(err,data){
 		for (var i = 0; i < data.length; i++) {
-			for (var j = 0; j < students.length; j++) {
-				if(data[i].StudentName === students[j][0]){
-					data[i].WhoPairedWith.push(students[j][1])
-					Student.findOneAndUpdate({StudentName: students[j][0]}, {$set:{WhoPairedWith: data[i].WhoPairedWith}}, function(err,data){
-						if (err){
-							// res.status(500).json(err.message);
-						}else{
-							res.end(JSON.stringify(data))
-						}
-					})
-				}if (data[i].StudentName === students[j][1]){
-					data[i].WhoPairedWith.push(students[j][0])
-					Student.findOneAndUpdate({StudentName: students[j][1]}, {$set:{WhoPairedWith: data[i].WhoPairedWith}}, function(err,data){
-						if (err){
-							// res.status(500).json(err.message);
-						}else{
-							res.end(JSON.stringify(data))
-						}	
-					})
-				}	
+			if(data[i].StudentName === students[0][0].StudentName && students){
+								data[i].WhoPairedWith.push("DUCK")
+								Student.findOneAndUpdate({StudentName: students[0][0].StudentName}, {$set:{WhoPairedWith: data[i].WhoPairedWith, DUCK: true}}, function(err,data){
+									if (err){
+										res.status(500).json(err.message);
+									}else{
+										res.end(JSON.stringify(data))
+									}
+								})
+								}else{
+									for (var j = 1; j < students.length; j++) {
+
+							if(data[i].StudentName === students[j][0].StudentName){
+								data[i].WhoPairedWith.push(students[j][1])
+								Student.findOneAndUpdate({StudentName: students[j][0].StudentName}, {$set:{WhoPairedWith: data[i].WhoPairedWith}}, function(err,data){
+									if (err){
+										res.status(500).json(err.message);
+									}else{
+										res.end(JSON.stringify(data))
+									}
+								})
+								}
+					if (data[i].StudentName === students[j][1].StudentName){
+						data[i].WhoPairedWith.push(students[j][0])
+						Student.findOneAndUpdate({StudentName: students[j][1].StudentName}, {$set:{WhoPairedWith: data[i].WhoPairedWith}}, function(err,data){
+							if (err){
+								res.status(500).json(err.message);
+							}else{
+								res.end(JSON.stringify(data))
+							}	
+						})
+					}
+								}
 			}
 		}
 	})

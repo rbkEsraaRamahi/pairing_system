@@ -10,6 +10,10 @@ var StudentSchema = new mongoose.Schema({
   },
   WhoPairedWith: [],
   CohortNumber: Number,
+  DUCK: {
+        type: Boolean,
+        default: false
+    }
 });
 
 var Student = mongoose.model('Student', StudentSchema);
