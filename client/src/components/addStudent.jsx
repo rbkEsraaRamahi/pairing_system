@@ -9,7 +9,8 @@ class Student extends React.Component {
 		this.state = {states:{
 			StudentName:"",
 			Level:"",
-			CohortNumber:""
+			CohortNumber:"",
+			DUCK:false
 		}
 	}
 	this.onChange = this.onChange.bind(this);
