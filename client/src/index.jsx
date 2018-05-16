@@ -100,8 +100,7 @@ class App extends React.Component {
         }
       }
     }
-  }
-}
+  
     that.state.pairing=result;
     that.setState({
       pairing: that.state.pairing
