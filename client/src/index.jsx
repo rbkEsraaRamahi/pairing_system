@@ -50,7 +50,6 @@ class App extends React.Component {
           arr.push(data[i])
         }
         var length = arr.length;
-
           for (var i =0; i < arr.length; i++) {
             var rand = Math.floor(Math.random()*(length-i)+i);
             var previos = arr[i];
@@ -110,7 +109,7 @@ class App extends React.Component {
     }
   });
 }
-
+    
 render () {
   return (<div >
     <AppBar
