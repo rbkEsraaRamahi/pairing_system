@@ -9,7 +9,7 @@ var GroupNameSchema = new mongoose.Schema({
     type: Number,
   },
   CreatedAt: { type: Date, default: Date.now },
-  Pairs: [[]],
+  Pairs: [{}]
   
 });
 
