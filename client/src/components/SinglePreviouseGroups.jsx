@@ -27,7 +27,6 @@ export default class SinglePreviouseGroups extends React.Component {
     const style = {
       height: 1200,
       width: 700,
-      margin: 20,
       textAlign: 'center',
       display: 'inline-block',
       padding: '2em'
@@ -35,23 +34,23 @@ export default class SinglePreviouseGroups extends React.Component {
     return (
         <div>
           <Row>
-            <Col lg={1}>
+            <Col lg={2}>
               <TextField
-                  hintText='Full width'
-                  fullWidth
+                  hintText='Search by name'
+                  fullWidth={true}
                   onChange={this.handleNameSearch}
               />
             </Col>
-            <Col lg={4}/>
 
 
-            <Col lg={1}>
+            <Col lg={2}>
               <TextField
                   hintText='Search By Group '
-                  fullWidth
+                  fullWidth={true}
                   onChange={this.handleGroupSearch}
               />
             </Col>
+             <Col lg={4}/>
           </Row>
           {this.props.names.map(item => {
             return (
