@@ -28,8 +28,6 @@ exports.updateOne = function(req,res){
     var stringdd = JSON.stringify(dd)
     var students = JSON.parse(stringdd)
 
-	//var students = JSON.parse((req.body.student));
-	console.log(students)
 	Student.find().find(function(err,data){
 		for (var i = 0; i < data.length; i++) {
 			if(data[i].StudentName === students[0][0].StudentName && students){
@@ -67,6 +65,6 @@ exports.updateOne = function(req,res){
 			}
 		}
 	})
-}
+};
 
 
