@@ -1,7 +1,6 @@
 var GroupName = require('./GroupName')
 
-exports.CreateOne = function (res, req) {
-	console.log(req.body)
+exports.CreateOne = function (req, res) {
 	var data = req.body
 	var stringifyData = JSON.stringify(data)
 	var groupName = JSON.parse(stringifyData)
@@ -17,7 +16,7 @@ exports.CreateOne = function (res, req) {
   	});
 };
 
-exports.RetrieveAll = function (res, req){
+exports.RetrieveAll = function (req, res){
 	GroupName.find().find(function(err, data){
 		if(err){
 			return res.status(500).json(err.message)
