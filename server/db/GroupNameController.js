@@ -7,7 +7,6 @@ exports.CreateOne = function (req, res) {
 
 	// req.body.title = req.body.title.toLowerCase()
 	  // var groupName = JSON.parse(JSON.stringify(req.body));
-	  console.log(groupName)
 	  GroupName.create(groupName, function (err, response) {
 	    if (err) {
 	      return res.status(500).json(err.message);
