@@ -2,6 +2,7 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import SinglePreviouseGroups from './SinglePreviouseGroups';
 import methods from './methods';
+import fetch from 'isomorphic-fetch';
 
 class previousGroups extends React.Component {
   constructor() {
@@ -1260,6 +1261,21 @@ class previousGroups extends React.Component {
   }
 
   componentWillMount() {
+    fetch('http://localhost:3000/api/student/createGroupName/GetAll', {
+      credentials: 'include',
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+        .then(function(response){
+          return response.json();
+        })
+        .then(function (response) {
+          console.log(response)
+          // handle HTTP response
+        }, function (error) {
+          // handle network error
+        })
     this.setState({newNames: this.state.names})
   }
 
