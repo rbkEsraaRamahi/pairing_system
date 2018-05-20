@@ -1,22 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from '../index';
-import RaisedButton from 'material-ui/RaisedButton';
-import Badge from 'material-ui/Badge';
-import TextField from 'material-ui/TextField';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from '../index'
+import RaisedButton from 'material-ui/RaisedButton'
+import Badge from 'material-ui/Badge'
+import TextField from 'material-ui/TextField'
 import {
   Table,
   TableBody,
   TableHeader,
   TableHeaderColumn,
   TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import {Tabs, Tab} from 'material-ui/Tabs';
-import AppBar from 'material-ui/AppBar';
+  TableRowColumn
+} from 'material-ui/Table'
+import injectTapEventPlugin from 'react-tap-event-plugin'
+import {Tabs, Tab} from 'material-ui/Tabs'
+import AppBar from 'material-ui/AppBar'
 
 class Pairing extends React.Component {
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -72,73 +73,73 @@ class Pairing extends React.Component {
   this.state.groups[name] = value;
   }
  
-    pairingList(){
-      console.log(this.state.groups)
-    var that=this
+   
+  pairingList () {
+    var that = this;
     $.ajax({
       type: 'GET',
       url: ' http://localhost:3000/api/student/',
       data: {},
       success: function (dataB) {
-        function randomaize(data) {
+        function randomaize (data) {
           var arr = []
           for (var i = 0; i < data.length; i++) {
             arr.push(data[i])
           }
-          var length = arr.length;
-          for (var i =0; i < arr.length; i++) {
-            var rand = Math.floor(Math.random()*(length-i)+i);
-            var previos = arr[i];
-            arr[i] = arr[rand];
-            arr[rand] = previos; 
+          var length = arr.length
+          for (var i = 0; i < arr.length; i++) {
+            var rand = Math.floor(Math.random() * (length - i) + i)
+            var previos = arr[i]
+            arr[i] = arr[rand]
+            arr[rand] = previos
           }
-          return arr;
+          return arr
         }
-        var arr = randomaize(dataB);
-        var result=[];
-        var counter=-1;
-        var filter = [];
-        
-        while(arr.length>0){
-          counter++;
-          result.push([arr[0]]);      
+        var arr = randomaize(dataB)
+        var result = []
+        var counter = -1
+        var filter = []
+
+        while (arr.length > 0) {
+          counter++
+          result.push([arr[0]])
           var correntStudent = arr.shift()
           for (var i = 0; i < arr.length; i++) {
-           if(arr[i].Level -1 === correntStudent.Level || arr[i].Level +1 === correntStudent.Level){
-             if(correntStudent.WhoPairedWith.indexOf(arr[i].StudentName) === -1){
+            if (arr[i].Level - 1 === correntStudent.Level || arr[i].Level + 1 === correntStudent.Level) {
+              if (correntStudent.WhoPairedWith.indexOf(arr[i].StudentName) === -1) {
              	// debugger
-               result[counter].push(arr[i])
-               var index = arr.indexOf(arr[i])
-               arr.splice(index, 1)
-               break;
-             }
-           }
-         }
-         for (var i = 0; i < result.length; i++) {
-          if (result[i].length === 1) {
-            for (var j = i; j < result.length; j++) {
-              if (result[j] !== result[i] && result[j].length === 1 ){
-                if(result[i][0].WhoPairedWith.indexOf(result[j][0].StudentName) === -1){
-                  result[i].push(result[j][0])
-                  result.splice(j,1)
+                result[counter].push(arr[i])
+                var index = arr.indexOf(arr[i])
+                arr.splice(index, 1)
+                break
+              }
+            }
+          }
+          for (var i = 0; i < result.length; i++) {
+            if (result[i].length === 1) {
+              for (var j = i; j < result.length; j++) {
+                if (result[j] !== result[i] && result[j].length === 1) {
+                  if (result[i][0].WhoPairedWith.indexOf(result[j][0].StudentName) === -1) {
+                    result[i].push(result[j][0])
+                    result.splice(j, 1)
+                  }
                 }
               }
             }
           }
         }
+        that.state.pairing = result
+        that.setState({
+          pairing: that.state.pairing
+        })
+      },
+      error: function (request, status, error) {
+        console.log(error)
       }
-      that.state.pairing=result;
-      that.setState({
-        pairing: that.state.pairing
-      })
-
-    },
-    error: function (request, status, error) {
-      console.log(error);
-    }
   });
-  }
-  render() {
+      }
+
+  render () {
     return (
       <div><h1> Pairing List </h1>
       <TextField
@@ -173,6 +174,5 @@ class Pairing extends React.Component {
       <RaisedButton label="Submit"  buttonStyle={{ background:"#FF1493"}}   onChange={this.onChange}  onClick={this.add}   /></div>
       );
   }
-
 }
-export default Pairing;
+export default Pairing
