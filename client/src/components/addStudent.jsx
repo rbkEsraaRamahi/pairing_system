@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import { browserHistory as history } from 'react-router';
 
 class Student extends React.Component {
 	constructor(props) {
@@ -47,7 +48,7 @@ handleSubmit() {
 }
 
 render() {
-	return (<div>	
+	return (<div> 	
 		
 		<TextField
 		style={{fontSize: '20px'}}
@@ -77,6 +78,8 @@ render() {
 		/><br />
 		<br />
 		<RaisedButton label="Add Student" buttonStyle={{ background:"#FF1493"}}  onClick={this.handleSubmit} />
+		
+		<RaisedButton label="Back" buttonStyle={{ background:"#FF1493"}} onClick={() =>history.push('/')}/>
 		
 		</div>)  
 }
