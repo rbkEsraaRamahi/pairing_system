@@ -1,21 +1,21 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose')
 
 var StudentSchema = new mongoose.Schema({
   StudentName: {
     type: String,
-    unique: true,
+    unique: true
   },
   Level: {
-    type: Number,
+    type: Number
   },
   WhoPairedWith: [],
   CohortNumber: Number,
   DUCK: {
-        type: Boolean,
-        default: false
-    }
-});
+    type: Boolean,
+    default: false
+  }
+})
 
-var Student = mongoose.model('Student', StudentSchema);
+var Student = mongoose.model('Student', StudentSchema)
 
-module.exports = Student;
+module.exports = Student
