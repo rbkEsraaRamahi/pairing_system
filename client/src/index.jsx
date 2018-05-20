@@ -24,7 +24,9 @@ class App extends React.Component {
     }
   }
 
+
   render () {
+
     return (
       <div>
         <AppBar title='Pairing System' style={{background: '#FF1493', fontWeight: 'bold'}} >
