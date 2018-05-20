@@ -12,7 +12,7 @@ const routes = (
     <Route path='/' component={App} />
     <Route path='/addStudent' component={Student} />
     <Route path='/previousGroups' component={PreviousGroups} />
-    
+
   </Router>
 )
 
