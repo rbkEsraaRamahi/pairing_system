@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "  webpack-dev-server & node server/app.js ",
+    "scripts": {
+    "start": "webpack-dev-server",
+    "start-ar": "ls",
+    "prod": "cross-env NODE_ENV=production webpack-dev-server --env.prod=true",
+    "build": "rimraf build && cross-env NODE_ENV=production webpack --env.prod=true --env.sw=true",
     "devbuild": "rimraf build && cross-env NODE_ENV=production webpack --env.sw=true",
-    "dev": "webpack-dev-server",
-    "lint": "eslint ./"
+    "serve": "pushstate-server build/ 3000"
   },
   "author": "",
   "license": "ISC",
