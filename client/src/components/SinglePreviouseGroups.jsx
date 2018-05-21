@@ -55,7 +55,7 @@ export default class SinglePreviouseGroups extends React.Component {
           {this.props.groups.map(item => {
             return (
                 <Paper style={style} zDepth={1}>
-                  <Pairs pairs={item['Pairs']}/>
+                  <Pairs pairs={item['pairs']}/>
                 </Paper>
             )
           })}
