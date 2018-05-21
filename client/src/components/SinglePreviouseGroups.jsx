@@ -52,10 +52,10 @@ export default class SinglePreviouseGroups extends React.Component {
             </Col>
              <Col lg={4}/>
           </Row>
-          {this.props.names.map(item => {
+          {this.props.groups.map(item => {
             return (
                 <Paper style={style} zDepth={1}>
-                  <Pairs Pairs={item['Pairs']}/>
+                  <Pairs pairs={item['Pairs']}/>
                 </Paper>
             )
           })}

@@ -8,25 +8,7 @@ class previousGroups extends React.Component {
   constructor() {
     super()
     this.state = {
-      live:[],
-      names: [{
-        "groupData": {
-          "id": 107,
-          "title": "angular",
-          "group_id": 34,
-          "group_size": 2,
-          "created_at": "2017-02-01T06:52:35.316Z"
-        },
-        "pairs": [
-          {
-            "user1_uid": "90796afadf27",
-            "user2_uid": "c1a4febd9f3a",
-            "gen_table_id": 107
-          }
-
-          ]
-        }
-      ]
+      groups:[]
     }
   }
 
@@ -42,7 +24,7 @@ class previousGroups extends React.Component {
           return response.json();
         })
         .then(function (response) {
-         that.setState({live: response})
+         that.setState({groups: response})
         }, function (error) {
         })
     this.setState({newNames: this.state.names})
@@ -57,14 +39,13 @@ class previousGroups extends React.Component {
   }
 
   render() {
-
     return (
         <Grid fluid>
           <SinglePreviouseGroups handleGroupSearch={(value) => {
             this.handleGroupSearch(value)
           }} handleNameSearch={(value) => {
             this.handleNameSearch(value)
-          }} names={this.state.live}/>
+          }} groups={this.state.groups}/>
         </Grid>
     )
   }
