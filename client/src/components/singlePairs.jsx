@@ -11,7 +11,8 @@ export default class Pairs extends React.Component {
   render () {
     return (
       <div style={{margin: '3em'}}>
-        {this.props.Pairs.map(item => {
+        {this.props.pairs.map(item => {
+          console.log(item)
           return (
             <Row>
               <Col style={{margin: '1em'}}>
