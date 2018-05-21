@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server/app.js",
+    "start": "node server/app.js",
     "devbuild": "rimraf build && cross-env NODE_ENV=production webpack --env.sw=true",
     "dev": "webpack-dev-server",
     "lint": "eslint ./"
