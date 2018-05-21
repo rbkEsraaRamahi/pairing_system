@@ -31,7 +31,9 @@ class Student extends React.Component {
   }
 
   handleSubmit () {
-    console.log(this.state.states)
+  	this.setState({	StudentName:"",
+			Level:"",
+			CohortNumber:"",})
     var that = this
     $.ajax({
       type: 'POST',
@@ -45,11 +47,11 @@ class Student extends React.Component {
       }
     })
   }
-
   render () {
     return (<div>
 
       <TextField
+		value={this.state.StudentName}
         style={{fontSize: '20px'}}
         floatingLabelText='Enter a student name:'
         floatingLabelFixed
@@ -59,6 +61,7 @@ class Student extends React.Component {
       /><br />
 
       <TextField
+		value= {this.state.Level}
         style={{fontSize: '20px'}}
         floatingLabelText=' Enter a student Level:'
         floatingLabelFixed
@@ -68,6 +71,7 @@ class Student extends React.Component {
       /><br />
 
       <TextField
+		value={this.state.CohortNumber}
         style={{fontSize: '20px'}}
         floatingLabelText=' Enter a student cohort:'
         floatingLabelFixed
