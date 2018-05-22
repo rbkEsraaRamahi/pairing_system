@@ -21,6 +21,7 @@ class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
+      pairing: [],
     }
   }
 
@@ -53,7 +54,7 @@ class App extends React.Component {
             var rand = Math.floor(Math.random()*(length-i)+i);
             var previos = arr[i];
             arr[i] = arr[rand];
-            arr[rand] = previos; 
+            arr[rand] = previos;
           }
           return arr;
         }
@@ -73,82 +74,82 @@ class App extends React.Component {
         }
         while(arr.length>0){
           counter++;
-          result.push([arr[0]]);      
+          result.push([arr[0]]);
           var correntStudent = arr.shift()
           for (var i = 0; i < arr.length; i++) {
-           if(arr[i].Level -1 === correntStudent.Level || arr[i].Level +1 === correntStudent.Level){
-             if(correntStudent.WhoPairedWith.indexOf(arr[i].StudentName) === -1){
-               result[counter].push(arr[i])
-               var index = arr.indexOf(arr[i])
-               arr.splice(index, 1)
-               break;
-             }
-           }
-         }
-         for (var i = 0; i < result.length; i++) {
-          if (result[i].length === 1) {
-            for (var j = i; j < result.length; j++) {
-              if (result[j] !== result[i] && result[j].length === 1 ){
-                if(result[i][0].WhoPairedWith.indexOf(result[j][0].StudentName) === -1){
-                  result[i].push(result[j][0])
-                  result.splice(j,1)
+            if(arr[i].Level -1 === correntStudent.Level || arr[i].Level +1 === correntStudent.Level){
+              if(correntStudent.WhoPairedWith.indexOf(arr[i].StudentName) === -1){
+                result[counter].push(arr[i])
+                var index = arr.indexOf(arr[i])
+                arr.splice(index, 1)
+                break;
+              }
+            }
+          }
+          for (var i = 0; i < result.length; i++) {
+            if (result[i].length === 1) {
+              for (var j = i; j < result.length; j++) {
+                if (result[j] !== result[i] && result[j].length === 1 ){
+                  if(result[i][0].WhoPairedWith.indexOf(result[j][0].StudentName) === -1){
+                    result[i].push(result[j][0])
+                    result.splice(j,1)
+                  }
                 }
               }
             }
           }
         }
+        that.state.pairing=result;
+        that.setState({
+          pairing: that.state.pairing
+        })
+      },
+      error: function (request, status, error) {
+        console.log(error);
       }
-      that.state.pairing=result;
-      that.setState({
-        pairing: that.state.pairing
-      })
-    },
-    error: function (request, status, error) {
-      console.log(error);
-    }
-  });
+    });
   }
   render() {
-    
+
     var usernameComp = (
-      <div><h1> Pairing List </h1>
-      <form onSubmit={this.handleSubmit}>
-      <label style={{fontWeight:"bold", fontSize:"20px"}}> Enter Sprint Name :   </label>
-      <TextField floatingLabelText="Enter Sprint Name" onChange={this.change} />      
-      </form>
-      <RaisedButton label="Create"  buttonStyle={{ background:"#FF1493"}}  onClick={this.pairingList}  />
-      <Table>
-      <TableHeader>
-      <TableRow>
-      <TableHeaderColumn>Student1</TableHeaderColumn>
-      <TableHeaderColumn>Level1</TableHeaderColumn>
-      <TableHeaderColumn>Student2</TableHeaderColumn>
-      <TableHeaderColumn>Level2</TableHeaderColumn>
-      </TableRow>
-      </TableHeader>
-      <TableBody>
-      {this.state.pairing.map((student,index) =>
-        <TableRow>
-        <TableRowColumn>{student[0].StudentName}</TableRowColumn>
-        <TableRowColumn>{student[0].Level}</TableRowColumn>
-        <TableRowColumn>{student[1].StudentName}</TableRowColumn>
-        <TableRowColumn>{student[1].Level}</TableRowColumn>
-        </TableRow>
-        )}
-      </TableBody>
-      </Table>
-      <RaisedButton label="Submit"  buttonStyle={{ background:"#FF1493"}}  onClick={this.add} /></div>
-      );
+        <div><h1> Pairing List </h1>
+          <form onSubmit={this.handleSubmit}>
+            <label style={{fontWeight:"bold", fontSize:"20px"}}> Enter Sprint Name :   </label>
+            <TextField floatingLabelText="Enter Sprint Name" onChange={this.change} />
+          </form>
+          <RaisedButton label="Create"  buttonStyle={{ background:"#FF1493"}}  onClick={this.pairingList}  />
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHeaderColumn>Student1</TableHeaderColumn>
+                <TableHeaderColumn>Level1</TableHeaderColumn>
+                <TableHeaderColumn>Student2</TableHeaderColumn>
+                <TableHeaderColumn>Level2</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {this.state.pairing.map((student,index) =>
+                  <TableRow>
+                    <TableRowColumn>{student[0].StudentName}</TableRowColumn>
+                    <TableRowColumn>{student[0].Level}</TableRowColumn>
+                    <TableRowColumn>{student[1].StudentName}</TableRowColumn>
+                    <TableRowColumn>{student[1].Level}</TableRowColumn>
+                  </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <RaisedButton label="Submit"  buttonStyle={{ background:"#FF1493"}}  onClick={this.add} /></div>
+    );
     return (
-      <div>
-        <AppBar title='Pairing System' style={{background: '#FF1493', fontWeight: 'bold'}} >
-          <Tabs>
-            <Tab label='&nbsp;Add&nbsp;Students&nbsp;&nbsp;&nbsp;&nbsp;'style={{background: '#FF1493', fontWeight: 'bold'}} onClick={() => history.push('/addStudent')} />
-            <Tab label='&nbsp;Groups&nbsp;' style={{background: '#FF1493', fontWeight: 'bold'}} />
-          </Tabs>
-        </AppBar>
-        <Pairing />
-      </div>
+        <div>
+          <AppBar title='Pairing System' style={{background: '#FF1493', fontWeight: 'bold'}} >
+            <Tabs>
+              <Tab label='&nbsp;Add&nbsp;Students&nbsp;&nbsp;&nbsp;&nbsp;'style={{background: '#FF1493', fontWeight: 'bold'}} onClick={() => history.push('/addStudent')} />
+              <Tab label='&nbsp;Groups&nbsp;' style={{background: '#FF1493', fontWeight: 'bold'}} />
+            </Tabs>
+          </AppBar>
+          <Pairing />
+        </div>
     )
   }
 }
