@@ -8,7 +8,6 @@ export default class NotExist extends React.Component {
   }
 
   render(){
-    console.log('I am here ')
     return (
 <h1> Groups is not found </h1>
     )
