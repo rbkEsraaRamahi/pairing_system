@@ -30,8 +30,7 @@ export default class SinglePreviouseGroups extends React.Component {
       width: 700,
       textAlign: 'center',
       display: 'inline-block',
-      margin: '5em'
-
+      margin: '10px'
     }
     return (
         <div>
@@ -58,10 +57,10 @@ export default class SinglePreviouseGroups extends React.Component {
                   <Card>
                     <Row>
                       <Col>
-                    <CardHeader
-                        title={item.title}
-                        avatar="images/jsa-128.jpg"
-                    />
+                        <CardHeader
+                            title={item.title}
+                            avatar="images/jsa-128.jpg"
+                        />
                       </Col>
                     </Row>
                   </Card>
