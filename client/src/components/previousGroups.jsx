@@ -39,6 +39,7 @@ class previousGroups extends React.Component {
   }
 
   render() {
+    // pass the [{pairs:[[],[],[]], title }]
     return (
         <Grid fluid>
           <SinglePreviouseGroups handleGroupSearch={(value) => {
