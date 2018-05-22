@@ -3,6 +3,7 @@ import $ from 'jquery'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { browserHistory as history } from 'react-router'
+import Paper from 'material-ui/Paper'
 
 class Student extends React.Component {
   constructor (props) {
@@ -31,9 +32,9 @@ class Student extends React.Component {
   }
 
   handleSubmit () {
-  	this.setState({	StudentName:"",
-			Level:"",
-			CohortNumber:"",})
+    this.setState({	StudentName: '',
+      Level: '',
+      CohortNumber: ''})
     var that = this
     $.ajax({
       type: 'POST',
@@ -48,43 +49,41 @@ class Student extends React.Component {
     })
   }
   render () {
-    return (<div>
+    return (
+      <Paper>
+        <TextField
+          value={this.state.StudentName}
+          style={{fontSize: '20px'}}
+          floatingLabelText='Enter a student name:'
+          floatingLabelFixed
+          floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
+          onChange={this.onChange}
+          id='StudentName'
+        /><br />
 
-      <TextField
-		value={this.state.StudentName}
-        style={{fontSize: '20px'}}
-        floatingLabelText='Enter a student name:'
-        floatingLabelFixed
-        floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
-        onChange={this.onChange}
-        id='StudentName'
-      /><br />
+        <TextField
+          value={this.state.Level}
+          style={{fontSize: '20px'}}
+          floatingLabelText=' Enter a student Level:'
+          floatingLabelFixed
+          floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
+          onChange={this.onChange}
+          id='Level'
+        /><br />
 
-      <TextField
-		value= {this.state.Level}
-        style={{fontSize: '20px'}}
-        floatingLabelText=' Enter a student Level:'
-        floatingLabelFixed
-        floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
-        onChange={this.onChange}
-        id='Level'
-      /><br />
-
-      <TextField
-		value={this.state.CohortNumber}
-        style={{fontSize: '20px'}}
-        floatingLabelText=' Enter a student cohort:'
-        floatingLabelFixed
-        floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
-        onChange={this.onChange}
-        id='CohortNumber'
-      /><br />
-      <br />
-      <RaisedButton label='Add Student' buttonStyle={{ background: '#FF1493'}} onClick={this.handleSubmit} />
-
-      <RaisedButton label='Back' buttonStyle={{ background: '#FF1493'}} onClick={() => history.push('/')} />
-
-    </div>)
+        <TextField
+          value={this.state.CohortNumber}
+          style={{fontSize: '20px'}}
+          floatingLabelText=' Enter a student cohort:'
+          floatingLabelFixed
+          floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
+          onChange={this.onChange}
+          id='CohortNumber'
+        /><br />
+        <br />
+        <RaisedButton label='Add Student' buttonStyle={{ background: '#FF1493'}} onClick={this.handleSubmit} />
+        <RaisedButton label='Back' buttonStyle={{ background: '#FF1493'}} onClick={() => history.push('/')} />
+      </Paper>)
   }
 }
 

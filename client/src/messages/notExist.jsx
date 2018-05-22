@@ -1,15 +1,13 @@
-import React from 'react';
-
-
+import React from 'react'
 
 export default class NotExist extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
   }
 
-  render(){
+  render () {
     return (
-<h1> Groups is not found </h1>
+      <h1> Groups is not found </h1>
     )
   }
 }
