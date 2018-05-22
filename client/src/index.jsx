@@ -1,11 +1,12 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { browserHistory as history } from 'react-router'
-import Student from './components/addStudent.jsx'
-import Pairing from './components/pairingList.jsx'
-import RaisedButton from 'material-ui/RaisedButton'
-import Badge from 'material-ui/Badge'
-import TextField from 'material-ui/TextField'
+import { browserHistory as history } from 'react-router';
+import Pairing from './components/pairingList.jsx';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
+import {Tabs, Tab} from 'material-ui/Tabs'
+import AppBar from 'material-ui/AppBar'
 import {
   Table,
   TableBody,
@@ -14,14 +15,14 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-import {Tabs, Tab} from 'material-ui/Tabs'
-import AppBar from 'material-ui/AppBar'
+
+
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      pairing: []
+      pairing: [],
+      open: false
     }
   }
 
@@ -111,44 +112,52 @@ class App extends React.Component {
   }
   render () {
     var usernameComp = (
-      <div><h1> Pairing List </h1>
-        <form onSubmit={this.handleSubmit}>
-          <label style={{fontWeight: 'bold', fontSize: '20px'}}> Enter Sprint Name :   </label>
-          <TextField floatingLabelText='Enter Sprint Name' onChange={this.change} />
-        </form>
-        <RaisedButton label='Create' buttonStyle={{ background: '#FF1493'}} onClick={this.pairingList} />
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Student1</TableHeaderColumn>
-              <TableHeaderColumn>Level1</TableHeaderColumn>
-              <TableHeaderColumn>Student2</TableHeaderColumn>
-              <TableHeaderColumn>Level2</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {this.state.pairing.map((student, index) =>
+        <div><h1> Pairing List </h1>
+          <form onSubmit={this.handleSubmit}>
+            <label style={{fontWeight: 'bold', fontSize: '20px'}}> Enter Sprint Name :   </label>
+            <TextField floatingLabelText='Enter Sprint Name' onChange={this.change} />
+          </form>
+          <RaisedButton label='Create' buttonStyle={{ background: '#FF1493'}} onClick={this.pairingList} />
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableRowColumn>{student[0].StudentName}</TableRowColumn>
-                <TableRowColumn>{student[0].Level}</TableRowColumn>
-                <TableRowColumn>{student[1].StudentName}</TableRowColumn>
-                <TableRowColumn>{student[1].Level}</TableRowColumn>
+                <TableHeaderColumn>Student1</TableHeaderColumn>
+                <TableHeaderColumn>Level1</TableHeaderColumn>
+                <TableHeaderColumn>Student2</TableHeaderColumn>
+                <TableHeaderColumn>Level2</TableHeaderColumn>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
-        <RaisedButton label='Submit' buttonStyle={{ background: '#FF1493'}} onClick={this.add} /></div>
+            </TableHeader>
+            <TableBody>
+              {this.state.pairing.map((student, index) =>
+                  <TableRow>
+                    <TableRowColumn>{student[0].StudentName}</TableRowColumn>
+                    <TableRowColumn>{student[0].Level}</TableRowColumn>
+                    <TableRowColumn>{student[1].StudentName}</TableRowColumn>
+                    <TableRowColumn>{student[1].Level}</TableRowColumn>
+                  </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <RaisedButton label='Submit' buttonStyle={{ background: '#FF1493'}} onClick={this.add} /></div>
     )
     return (
-      <div>
-        <AppBar title='Pairing System' style={{background: '#FF1493', fontWeight: 'bold'}} >
-          <Tabs>
-            <Tab label='&nbsp;Add&nbsp;Students&nbsp;&nbsp;&nbsp;&nbsp;'style={{background: '#FF1493', fontWeight: 'bold'}} onClick={() => history.push('/addStudent')} />
-            <Tab label='&nbsp;Groups&nbsp;' style={{background: '#FF1493', fontWeight: 'bold'}} />
-          </Tabs>
-        </AppBar>
-        <Pairing />
-      </div>
+        <div>
+          <Drawer open={this.state.open}>
+            <MenuItem onClick={()=> history.push('./groups')}> Groups </MenuItem>
+            <MenuItem onClick={()=> history.push('./pairs')}> Pairs </MenuItem>
+            <MenuItem onClick={()=> history.push('./assessments')}> Assessments </MenuItem>
+            <MenuItem onClick={()=> history.push('./reports')}> Reports </MenuItem>
+            <MenuItem onClick={()=> history.push('./cohorts')}> Cohorts </MenuItem>
+            <MenuItem onClick={()=> history.push('./Projects')}> projects </MenuItem>
+          </Drawer>
+          <AppBar onClick={() => this.setState({open: !this.state.open})} title='Pairing System' style={{background: '#FF1493', fontWeight: 'bold'}} >
+            <Tabs>
+              <Tab label='&nbsp;Add&nbsp;Students&nbsp;&nbsp;&nbsp;&nbsp;'style={{background: '#FF1493', fontWeight: 'bold'}} onClick={() => history.push('/addStudent')} />
+              <Tab label='&nbsp;Groups&nbsp;' style={{background: '#FF1493', fontWeight: 'bold'}} />
+            </Tabs>
+          </AppBar>
+          <Pairing />
+        </div>
     )
   }
 }
