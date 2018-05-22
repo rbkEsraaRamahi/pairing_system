@@ -2,16 +2,21 @@
  * Created by azoz on 03/04/17.
  */
 import React from 'react'
-import { Router, Route, IndexRoute, browserHistory } from 'react-router'
-import App from './src/index'
-import PreviousGroups from './src/components/previousGroups'
+import {Router, Route, IndexRoute, browserHistory, browserHistory as history} from 'react-router'
+import Dashboard from './src/index'
+import Pairs from './src/components/Pairs'
 import Student from './src/components/addStudent'
 
 const routes = (
   <Router history={browserHistory}>
-    <Route path='/' component={App} />
-    <Route path='/addStudent' component={Student} />
-    <Route path='/previousGroups' component={PreviousGroups} />
+    <Route path='/' component={Dashboard} />
+    <Route path='/student' component={Student} />
+    <Route path='/groups' component={Pairs} />
+    <Route path='/pairs' component={null} />
+    <Route path='/reports' component={null} />
+    <Route path='/assessments' component={null} />
+    <Route path='/cohorts' component={null} />
+    <Route path='/projects' component={null} />
 
   </Router>
 )
