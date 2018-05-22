@@ -17,65 +17,61 @@ import {Tabs, Tab} from 'material-ui/Tabs'
 import AppBar from 'material-ui/AppBar'
 
 class Pairing extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			pairing:[],
-      groups:{
-        title:"",
-        GroupSize:"",
-        Pairs:[]
+  constructor (props) {
+    super(props)
+    this.state = {
+      pairing: [],
+      groups: {
+        title: '',
+        GroupSize: '',
+        Pairs: []
 
       }
 	  }
-	this.pairingList = this.pairingList.bind(this);
-    this.add = this.add.bind(this);
-    this.onChange = this.onChange.bind(this);
-     
-    
-   }
+    this.pairingList = this.pairingList.bind(this)
+    this.add = this.add.bind(this)
+    this.onChange = this.onChange.bind(this)
+  }
 
-    add () {
-      var states = this.state.groups;
-      var size=this.state.pairing.length;
-      var pairing=this.state.pairing;
-      states["GroupSize"]=Number(size);
-      states["title"]=this.state.groups["title"]
-      states["Pairs"]=pairing;
-      this.setState({
-        groups:states
-      });
-      console.log(this.state.groups)
-      var that=this
-      $.ajax({
-        type: "PUT",
-        url: "http://localhost:3000/api/student/update",
-        data:{"student":that.state.pairing},
-        success: function(res){
-          console.log('sucesss');
-        }
-      });
-      $.ajax({
-        type: "POST",
-        url: "http://localhost:3000/api/student/createGroupName",
-        data:that.state.groups,
-        success: function(res){
-          console.log('add Group');
-        }
-      });
+  add () {
+    var states = this.state.groups
+    var size = this.state.pairing.length
+    var pairing = this.state.pairing
+    states['GroupSize'] = Number(size)
+    states['title'] = this.state.groups['title']
+    states['Pairs'] = pairing
+    this.setState({
+      groups: states
+    })
+    console.log(this.state.groups)
+    var that = this
+    $.ajax({
+      type: 'PUT',
+      url: 'http://localhost:3000/api/student/update',
+      data: {'student': that.state.pairing},
+      success: function (res) {
+        console.log('sucesss')
+      }
+    })
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:3000/api/student/createGroupName',
+      data: that.state.groups,
+      success: function (res) {
+        console.log('add Group')
+      }
+    })
   }
-  onChange(e) {
-  var name = e.target.id;
-  var value = e.target.value;
-  console.log(name)
-  console.log(value)
-  this.state.groups[name] = value;
+  onChange (e) {
+    var name = e.target.id
+    var value = e.target.value
+    console.log(name)
+    console.log(value)
+    this.state.groups[name] = value
   }
- 
-   
+
   pairingList () {
-    var that = this;
+    var that = this
     $.ajax({
       type: 'GET',
       url: ' http://localhost:3000/api/student/',
@@ -136,43 +132,43 @@ class Pairing extends React.Component {
       error: function (request, status, error) {
         console.log(error)
       }
-  });
-      }
+    })
+  }
 
   render () {
     return (
       <div><h1> Pairing List </h1>
-      <TextField
-      style={{fontSize: '20px'}}
-      floatingLabelText=" Enter a Sprint Name:"
-      floatingLabelFixed={true}
-      floatingLabelStyle={{ fontSize: '20px',fontWeight:"bold" , color:"black" }}
-      onChange={this.onChange}
-      id="title"
-      /><br />
-      <RaisedButton label="Create"  buttonStyle={{ background:"#FF1493"}}  onClick={this.pairingList}  />
-      <Table>
-      <TableHeader>
-      <TableRow>
-      <TableHeaderColumn>Student1</TableHeaderColumn>
-      <TableHeaderColumn>Level1</TableHeaderColumn>
-      <TableHeaderColumn>Student2</TableHeaderColumn>
-      <TableHeaderColumn>Level2</TableHeaderColumn>
-      </TableRow>
-      </TableHeader>
-      <TableBody>
-      {this.state.pairing.map((student,index) =>
-        <TableRow>
-        <TableRowColumn>{student[0].StudentName}</TableRowColumn>
-        <TableRowColumn>{student[0].Level}</TableRowColumn>
-        <TableRowColumn>{student[1].StudentName}</TableRowColumn>
-        <TableRowColumn>{student[1].Level}</TableRowColumn>
-        </TableRow>
-        )}
-      </TableBody>
-      </Table>
-      <RaisedButton label="Submit"  buttonStyle={{ background:"#FF1493"}}   onChange={this.onChange}  onClick={this.add}   /></div>
-      );
+        <TextField
+          style={{fontSize: '20px'}}
+          floatingLabelText=' Enter a Sprint Name:'
+          floatingLabelFixed
+          floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
+          onChange={this.onChange}
+          id='title'
+        /><br />
+        <RaisedButton label='Create' buttonStyle={{ background: '#FF1493'}} onClick={this.pairingList} />
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Student1</TableHeaderColumn>
+              <TableHeaderColumn>Level1</TableHeaderColumn>
+              <TableHeaderColumn>Student2</TableHeaderColumn>
+              <TableHeaderColumn>Level2</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.state.pairing.map((student, index) =>
+              <TableRow>
+                <TableRowColumn>{student[0].StudentName}</TableRowColumn>
+                <TableRowColumn>{student[0].Level}</TableRowColumn>
+                <TableRowColumn>{student[1].StudentName}</TableRowColumn>
+                <TableRowColumn>{student[1].Level}</TableRowColumn>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+        <RaisedButton label='Submit' buttonStyle={{ background: '#FF1493'}} onChange={this.onChange} onClick={this.add} /></div>
+    )
   }
 }
 export default Pairing
