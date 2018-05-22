@@ -6,6 +6,7 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Pairs from './singlePairs';
+import NotExist from '../messages/notExist';
 
 export default class SinglePreviouseGroups extends React.Component {
   constructor(props) {
@@ -50,15 +51,15 @@ export default class SinglePreviouseGroups extends React.Component {
                   onChange={this.handleGroupSearch}
               />
             </Col>
-             <Col lg={4}/>
+            <Col lg={4}/>
           </Row>
-          {this.props.groups.map(item => {
+          {this.props.groups.length ? this.props.groups.map(item => {
             return (
                 <Paper style={style} zDepth={1}>
                   <Pairs pairs={item['Pairs']}/>
                 </Paper>
             )
-          })}
+          }) : <NotExist/>}
         </div>
     )
   }
