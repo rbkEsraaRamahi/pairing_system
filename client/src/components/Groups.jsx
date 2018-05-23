@@ -22,7 +22,7 @@ export default class Groups extends React.Component {
     var value = e.target.value
 
     if (name === 'group') {
-      this.setState({name: value})
+      this.setState({title: value})
     }
   }
   handleChange = (event, index, value) => this.setState({cohort: value});
@@ -39,14 +39,16 @@ export default class Groups extends React.Component {
   }
 
   createGroup = () =>{
+    console.log(this.state.title)
     fetch('http://localhost:3000/api/student/groups', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        title: this.state.title, cohort: this.state.cohort
+      body:JSON.stringify({
+        title: this.state.title,
+        cohort: this.state.cohort,
       })
     })
         .then(function(res){
