@@ -1,6 +1,7 @@
 var Groups = require('./Groups')
 
 exports.CreateOne = function (req, res) {
+  console.log(req.body)
   Groups.create(req.body, function (err, response) {
     if (err) {
       return res.status(500).json(err.message)
