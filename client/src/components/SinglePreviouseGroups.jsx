@@ -1,11 +1,12 @@
 import React from 'react';
-
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 import {Grid, Row, Col} from 'react-flexbox-grid';
 import Avatar from 'material-ui/Avatar';
 import Chip from 'material-ui/Chip';
 import Pairs from './singlePairs';
+import NotExist from '../messages/notExist';
 
 export default class SinglePreviouseGroups extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ export default class SinglePreviouseGroups extends React.Component {
       width: 700,
       textAlign: 'center',
       display: 'inline-block',
-      padding: '2em'
+      margin: '10px'
     }
     return (
         <div>
@@ -41,8 +42,6 @@ export default class SinglePreviouseGroups extends React.Component {
                   onChange={this.handleNameSearch}
               />
             </Col>
-
-
             <Col lg={2}>
               <TextField
                   hintText='Search By Group '
@@ -50,15 +49,27 @@ export default class SinglePreviouseGroups extends React.Component {
                   onChange={this.handleGroupSearch}
               />
             </Col>
-             <Col lg={4}/>
+            <Col lg={4}/>
           </Row>
-          {this.props.names.map(item => {
+          {this.props.groups.length ? this.props.groups.map(item => {
             return (
                 <Paper style={style} zDepth={1}>
-                  <Pairs Pairs={item['pairs']}/>
+                  <Card>
+                    <Row>
+                      <Col>
+                        <CardHeader
+                            title={item.title}
+                            avatar="images/jsa-128.jpg"
+                        />
+                      </Col>
+                    </Row>
+                  </Card>
+                  <Pairs pairs={item['Pairs']}/>
                 </Paper>
             )
-          })}
+          }) : <NotExist/>}
+
+
         </div>
     )
   }
