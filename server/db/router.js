@@ -1,7 +1,7 @@
 var studentRouter = require('express').Router()
 var studentController = require('./StudentController.js')
 var groupNameController = require('./GroupNameController.js')
-var groupController = require('./GroupsController.js');
+var groupController = require('./GroupsController.js')
 
 /// /////// Student Router //////////
 studentRouter.route('/').post(studentController.createOne)

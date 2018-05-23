@@ -1,4 +1,4 @@
-var port =  process.env.PORT || 3000
+var port = process.env.PORT || 3000
 var bodyParser = require('body-parser')
 var express = require('express')
 var db = require('./db/db.js')

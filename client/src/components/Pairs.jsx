@@ -3,6 +3,7 @@ import {Grid, Row, Col} from 'react-flexbox-grid';
 import SinglePreviouseGroups from './SinglePreviouseGroups';
 import methods from './methods';
 import fetch from 'isomorphic-fetch';
+import Paper from 'material-ui/Paper';
 
 class previousGroups extends React.Component {
   constructor() {
@@ -42,12 +43,14 @@ class previousGroups extends React.Component {
     // pass the [{pairs:[[],[],[]], title }]
     return (
         <Grid fluid>
+          <Paper zDepth={2} style={{alignText: 'center', margin:'1em', padding: '1em'}}>
           <SinglePreviouseGroups handleGroupSearch={(value) => {
             
             this.handleGroupSearch(value)
           }} handleNameSearch={(value) => {
             this.handleNameSearch(value)
           }} groups={this.state.groups}/>
+          </Paper>
         </Grid>
     )
   }
