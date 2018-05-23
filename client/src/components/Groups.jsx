@@ -34,7 +34,7 @@ export default class Groups extends React.Component {
           return res.json()
         })
         .then(function(res){
-          // that.setState({groups: res})
+          that.setState({groups: res})
         })
   }
 
