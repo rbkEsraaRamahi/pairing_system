@@ -2,8 +2,7 @@ var mongoose = require('mongoose')
 // this groups created out of cohort and should also related to pairs
 var GroupSchema = new mongoose.Schema({
   title: {
-    type: String,
-    unique: true
+    type: String
   },
   GroupSize: {
     type: Number
