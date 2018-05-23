@@ -43,6 +43,7 @@ class previousGroups extends React.Component {
     return (
         <Grid fluid>
           <SinglePreviouseGroups handleGroupSearch={(value) => {
+            
             this.handleGroupSearch(value)
           }} handleNameSearch={(value) => {
             this.handleNameSearch(value)
