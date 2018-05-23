@@ -1,9 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import App from '../index'
 import RaisedButton from 'material-ui/RaisedButton'
-import Badge from 'material-ui/Badge'
 import TextField from 'material-ui/TextField'
+import Paper from 'material-ui/Paper'
+
 import {
   Table,
   TableBody,
@@ -12,9 +11,6 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-import {Tabs, Tab} from 'material-ui/Tabs'
-import AppBar from 'material-ui/AppBar'
 
 class Pairing extends React.Component {
   constructor (props) {
@@ -27,7 +23,7 @@ class Pairing extends React.Component {
         Pairs: []
 
       }
-	  }
+    }
     this.pairingList = this.pairingList.bind(this)
     this.add = this.add.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -103,7 +99,7 @@ class Pairing extends React.Component {
           for (var i = 0; i < arr.length; i++) {
             if (arr[i].Level - 1 === correntStudent.Level || arr[i].Level + 1 === correntStudent.Level) {
               if (correntStudent.WhoPairedWith.indexOf(arr[i].StudentName) === -1) {
-             	// debugger
+                // debugger
                 result[counter].push(arr[i])
                 var index = arr.indexOf(arr[i])
                 arr.splice(index, 1)
@@ -137,37 +133,38 @@ class Pairing extends React.Component {
 
   render () {
     return (
-      <div><h1> Pairing List </h1>
-        <TextField
-          style={{fontSize: '20px'}}
-          floatingLabelText=' Enter a Sprint Name:'
-          floatingLabelFixed
-          floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
-          onChange={this.onChange}
-          id='title'
-        /><br />
-        <RaisedButton label='Create' buttonStyle={{ background: '#FF1493'}} onClick={this.pairingList} />
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Student1</TableHeaderColumn>
-              <TableHeaderColumn>Level1</TableHeaderColumn>
-              <TableHeaderColumn>Student2</TableHeaderColumn>
-              <TableHeaderColumn>Level2</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {this.state.pairing.map((student, index) =>
+        <Paper zDepth={2} style={{alignText: 'center', margin: '1em', padding: '1em'}}>
+          <TextField
+              style={{fontSize: '20px'}}
+              floatingLabelText=' Enter a Sprint Name:'
+              floatingLabelFixed
+              floatingLabelStyle={{ fontSize: '20px', fontWeight: 'bold', color: 'black' }}
+              onChange={this.onChange}
+              id='title'
+          /><br />
+          <RaisedButton label='Create' buttonStyle={{ background: '#FF1493'}} onClick={this.pairingList} />
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableRowColumn>{student[0].StudentName}</TableRowColumn>
-                <TableRowColumn>{student[0].Level}</TableRowColumn>
-                <TableRowColumn>{student[1].StudentName}</TableRowColumn>
-                <TableRowColumn>{student[1].Level}</TableRowColumn>
+                <TableHeaderColumn>Student1</TableHeaderColumn>
+                <TableHeaderColumn>Level1</TableHeaderColumn>
+                <TableHeaderColumn>Student2</TableHeaderColumn>
+                <TableHeaderColumn>Level2</TableHeaderColumn>
               </TableRow>
-            )}
-          </TableBody>
-        </Table>
-        <RaisedButton label='Submit' buttonStyle={{ background: '#FF1493'}} onChange={this.onChange} onClick={this.add} /></div>
+            </TableHeader>
+            <TableBody>
+              {this.state.pairing.map((student, index) =>
+                  <TableRow>
+                    <TableRowColumn>{student[0].StudentName}</TableRowColumn>
+                    <TableRowColumn>{student[0].Level}</TableRowColumn>
+                    <TableRowColumn>{student[1].StudentName}</TableRowColumn>
+                    <TableRowColumn>{student[1].Level}</TableRowColumn>
+                  </TableRow>
+              )}
+            </TableBody>
+          </Table>
+          <RaisedButton label='Submit' buttonStyle={{ background: '#FF1493'}} onChange={this.onChange} onClick={this.add} />
+        </Paper>
     )
   }
 }

@@ -4,17 +4,17 @@ import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 import { browserHistory as history } from 'react-router'
 import Paper from 'material-ui/Paper'
-import {Grid, Row, Col} from 'react-flexbox-grid'
+import {Row, Col} from 'react-flexbox-grid'
 
 class Student extends React.Component {
   constructor (props) {
     super(props)
     this.state = {states: {
-        StudentName: '',
-        Level: '',
-        CohortNumber: '',
-        DUCK: false
-      }
+      StudentName: '',
+      Level: '',
+      CohortNumber: '',
+      DUCK: false
+    }
     }
     this.onChange = this.onChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -53,46 +53,46 @@ class Student extends React.Component {
   }
   render () {
     return (
-        <Paper zDepth={2} style={{alignText: 'center', padding:'2em'}}>
-          <TextField
-              onChange={this.onChange}
-              value={this.state.StudentName}
-              floatingLabelText="Enter a student name:"
-              fullWidth={true}
-              id='StudentName'
-          />
-          <br/>
-          <TextField
-              value={this.state.Level}
-              onChange={this.onChange}
-              floatingLabelText=' Enter a student Level:'
-              fullWidth={true}
-              id='Level'
-          />
-          <br/>
-          <TextField
-              value={this.state.CohortNumber}
-              onChange={this.onChange}
-              floatingLabelText=' Enter a student cohort:'
-              fullWidth={true}
-              id='CohortNumber'
-          />
-          <br/>
-          <Row>
-            <Col lg={3}/>
-            <Col lg={2}>
+      <Paper zDepth={2} style={{alignText: 'center', margin: '1em', padding: '1em'}}>
+        <TextField
+          onChange={this.onChange}
+          value={this.state.StudentName}
+          floatingLabelText='Enter a student name:'
+          fullWidth
+          id='StudentName'
+        />
+        <br />
+        <TextField
+          value={this.state.Level}
+          onChange={this.onChange}
+          floatingLabelText=' Enter a student Level:'
+          fullWidth
+          id='Level'
+        />
+        <br />
+        <TextField
+          value={this.state.CohortNumber}
+          onChange={this.onChange}
+          floatingLabelText=' Enter a student cohort:'
+          fullWidth
+          id='CohortNumber'
+        />
+        <br />
+        <Row>
+          <Col lg={3} />
+          <Col lg={2}>
 
-              <RaisedButton fullWidth={true} label='Add Student' buttonStyle={{ background: '#FF1493'}} onClick={this.handleSubmit} />
+            <RaisedButton fullWidth label='Add Student' buttonStyle={{ background: '#FF1493'}} onClick={this.handleSubmit} />
 
-            </Col>
+          </Col>
 
-            <Col lg={2}/>
-            <Col lg={2}>
+          <Col lg={2} />
+          <Col lg={2}>
 
-              <RaisedButton fullWidth={true} label='Back' buttonStyle={{ background: '#FF1493'}} onClick={() => history.push('/')} />
-            </Col>
-          </Row>
-        </Paper>
+            <RaisedButton fullWidth label='Back' buttonStyle={{ background: '#FF1493'}} onClick={() => history.push('/')} />
+          </Col>
+        </Row>
+      </Paper>
 
     )
   }
